@@ -92,6 +92,7 @@
         .menu a:hover { color: var(--ff-yellow); }
         .menu a:hover::after { width: 100%; }
 
+        /* Download Button CSS (now applied to <a> tag) */
         .download-btn-nav {
             background: var(--ff-yellow);
             color: var(--ff-dark);
@@ -156,6 +157,7 @@
             letter-spacing: 0.5px;
         }
 
+        /* Main Button CSS (now applied to <a> tag) */
         .main-btn {
             display: inline-block;
             /* ইয়েলো থেকে অরেঞ্জ গ্র্যাডিয়েন্ট */
@@ -172,6 +174,7 @@
             box-shadow: var(--shadow-yellow);
             cursor: pointer;
             border: none;
+            text-align: center; /* anchor tag-এর জন্য */
         }
 
         .main-btn:hover {
@@ -426,7 +429,7 @@
             <li><a href="#">AGENTS</a></li>
             <li><a href="#">RANKED PVP</a></li>
         </ul>
-        <div class="download-btn-nav">PLAY NOW <i class="fas fa-arrow-right"></i></div>
+        <a href="https://drive.google.com/file/d/1eAJ35n77MM1P47oINShAZMC6EI-cNdZn/view" class="download-btn-nav" target="_blank">PLAY NOW <i class="fas fa-arrow-right"></i></a>
     </nav>
 
     <header>
@@ -435,7 +438,7 @@
             <p class="hero-desc">
                 "Strategy Meets Shooting." এই 1v1 turn-based PVP গেমে আপনার শট প্ল্যান করুন, আপনার ইউনিট প্লেস করুন এবং আপনার প্রতিপক্ষকে পরাস্ত করুন।
             </p>
-            <button class="main-btn">JOIN THE BATTLE NOW</button>
+            <a href="https://drive.google.com/file/d/1eAJ35n77MM1P47oINShAZMC6EI-cNdZn/view" class="main-btn" target="_blank">JOIN THE BATTLE NOW</a>
         </div>
     </header>
 
@@ -467,7 +470,7 @@
                     <p>টার্ন-ভিত্তিক শুটিং-এ YUzi একটি অতিরিক্ত শট ফায়ার করার সুযোগ পায়, যা প্রতিপক্ষকে দ্রুত কাবু করার জন্য আদর্শ।</p>
                 </div>
 
-                <button class="main-btn" style="padding: 12px 35px; font-size: 1.2rem;">VIEW ALL AGENTS</button>
+                <a href="https://drive.google.com/file/d/1eAJ35n77MM1P47oINShAZMC6EI-cNdZn/view" class="main-btn" style="padding: 12px 35px; font-size: 1.2rem;" target="_blank">DOWNLOAD NOW</a>
             </div>
             
             <div class="char-image-wrapper">
@@ -498,19 +501,13 @@
     </footer>
 
     <script>
-        // Sticky Navbar Logic
+        // Sticky Navbar Logic (No change needed here)
         window.addEventListener("scroll", function(){
             var header = document.querySelector("nav");
             header.classList.toggle("scrolled", window.scrollY > 50);
         });
 
-        // Button Click Effect (Download)
-        const buttons = document.querySelectorAll('.main-btn, .download-btn-nav');
-        buttons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('Connecting to Store... Download Starting!');
-            });
-        });
+        // Note: Button click event listeners removed as buttons are now direct <a> links.
     </script>
 
 </body>
