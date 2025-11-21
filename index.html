@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FirestrikeX - Ultimate Battle Royale</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* --- Global Styles --- */
+        :root {
+            --primary-color: #FFD700; /* Gold */
+            --secondary-color: #ff4500; /* Orange Red */
+            --bg-dark: #0a0a0a;
+            --bg-light: #1a1a1a;
+            --text-white: #ffffff;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: white; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- Header / Navbar --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-style: italic;
+        }
+
+        .logo span { color: var(--text-white); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover { color: var(--primary-color); }
+
+        .cta-btn {
+            padding: 10px 25px;
+            background: linear-gradient(45deg, var(--secondary-color), #b33000);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
+            transition: transform 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #b33000, var(--secondary-color));
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            font-style: italic;
+            margin-bottom: 10px;
+            text-shadow: 0px 0px 20px rgba(255, 69, 0, 0.8);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            color: #ddd;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .store-btn {
+            padding: 15px 30px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .store-btn:hover {
+            background: white;
+            color: black;
+        }
+
+        .store-btn.primary {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: black;
+        }
+
+        /* --- News Section --- */
+        .section {
+            padding: 60px 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 10px auto 0;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid #333;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background-color: #333;
+            background-image: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .date {
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        /* --- Character Section --- */
+        .characters {
+            background: linear-gradient(to right, #000, #1a1a1a);
+            text-align: center;
+        }
+
+        .char-highlight {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-top: 30px;
+        }
+
+        .char-img {
+            width: 300px;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1612287230217-969e03c44af5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 4px solid var(--primary-color);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .char-info {
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .char-info h2 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #050505;
+            padding: 40px 50px;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        .social-icons {
+            margin-bottom: 20px;
+        }
+
+        .social-icons i {
+            font-size: 24px;
+            color: #666;
+            margin: 0 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .social-icons i:hover { color: var(--primary-color); }
+
+        .footer-links a {
+            margin: 0 15px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; }
+            .nav-links { display: none; } /* Hidden on mobile for simplicity */
+            .hero h1 { font-size: 2.5rem; }
+            .char-highlight { flex-direction: column; }
+            .char-info { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">FIRESTRIKE<span>X</span></div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Esports</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Support</a></li>
+        </ul>
+        <button class="cta-btn">Download Now</button>
+    </header>
+
+    <section class="hero">
+        <h1>Survive. Strike. Win.</h1>
+        <p>Join the ultimate battle royale experience on mobile. 50 players, 10 minutes, 1 survivor. Are you ready for FirestrikeX?</p>
+        <div class="hero-buttons">
+            <button class="store-btn primary"><i class="fab fa-google-play"></i> Google Play</button>
+            <button class="store-btn"><i class="fab fa-apple"></i> App Store</button>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Latest News</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-img"></div>
+                <div class="card-content">
+                    <span class="date">NOV 21, 2025</span>
+                    <h3>New Map: Inferno Island</h3>
+                    <p>Explore the volcanic terrains of the new Inferno Island. Loot high-tier weapons and survive the heat!</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="card-content">
+                    <span class="date">NOV 18, 2025</span>
+                    <h3>Season 5 Battle Pass</h3>
+                    <p>Unlock exclusive skins, emotes, and characters with the all-new FirestrikeX Season 5 Battle Pass.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="card-content">
+                    <span class="date">NOV 10, 2025</span>
+                    <h3>Esports Championship</h3>
+                    <p>Register now for the National Championship. Prize pool of $100,000 awaits the champions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section characters">
+        <h2 class="section-title">Legendary Heroes</h2>
+        <div class="char-highlight">
+            <div class="char-img"></div>
+            <div class="char-info">
+                <h2>COBRA</h2>
+                <p>A former mercenary with unmatched stealth skills. His passive ability allows him to move silently when crouching.</p>
+                <br>
+                <button class="cta-btn" style="background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color);">View Ability</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-discord"></i>
+        </div>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Parental Guide</a>
+        </div>
+        <p class="copyright">Copyright © 2025 FirestrikeX. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Simple interaction script
+        document.querySelector('.cta-btn').addEventListener('click', function() {
+            alert('Download starting for FirestrikeX...');
+        });
+
+        // Sticky Navbar Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+    </script>
+</body>
+</html>
